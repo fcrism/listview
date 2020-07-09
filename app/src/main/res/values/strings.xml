@@ -2,4 +2,5 @@
     <string name="app_name">contact</string>
     <string name="contacts">Contact List</string>
     <string name="textNoContact">No Contacts Found</string>
+    <string name="findContact">Find Contacts</string>
 </resources>
