@@ -14,29 +14,19 @@
             android:layout_height="wrap_content"
             android:id="@+id/relativeLayout1">
             <include layout="@layout/snippet_viewcontact_toolbar"/>
+
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/relativeLayout2">
+            android:layout_below="@id/relativeLayout1">
 
             <ListView
-                android:id="@+id/contactsList"
                 android:layout_width="match_parent"
-                android:layout_height="0dp">
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:backgroundTint="@color/main_color"
-                    android:elevation="10dp"
-                    android:src="@drawable/ic_contact_add"
-                    app:fabSize="normal">
-
-
-                </com.google.android.material.floatingactionbutton.FloatingActionButton>
+                android:layout_height="match_parent"
+                android:id="@+id/contactsList"
+                >
             </ListView>
 
             <TextView
@@ -53,6 +43,23 @@
 
 
     </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_add"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_contact_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/main_color"
+        />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
