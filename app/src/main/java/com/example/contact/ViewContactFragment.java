@@ -20,9 +20,10 @@ public class ViewContactFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: view started");
+        View view = inflater.inflate(R.layout.fragment_viewcontacts, container,false);
 
         // Navegar ate add contacts
-        FloatingActionButton fab = (FloatingActionButton) getView().findViewById(R.id.btn_add);
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.btn_add);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -30,7 +31,7 @@ public class ViewContactFragment extends Fragment {
             }
         });
 
-        ImageView ivSearchContact = (ImageView) getView().findViewById((R.id.ivSearchIcon));
+        ImageView ivSearchContact = (ImageView) view.findViewById((R.id.ivSearchIcon));
         ivSearchContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,7 +39,7 @@ public class ViewContactFragment extends Fragment {
             }
         });
 
-        return inflater.inflate(R.layout.fragment_viewcontacts, container,false);
+        return view;
 
     }
 }
