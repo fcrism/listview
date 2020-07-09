@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">contact</string>
     <string name="contacts">Contact List</string>
+    <string name="textNoContact">No Contacts Found</string>
 </resources>
