@@ -30,5 +30,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //Universal Image Loader Plugin https://github.com/nostra13/Android-Universal-Image-Loader/wiki/Quick-Setup
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
 }
