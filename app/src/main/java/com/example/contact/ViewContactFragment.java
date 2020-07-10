@@ -91,7 +91,7 @@ public class ViewContactFragment extends Fragment {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             // exceção caso o teclado já esteja aberto
             try {
-                imm.hideSoftInputFromInputMethod(view.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             } catch (NullPointerException e){
                 Log.d(TAG, "setAPPBarState:  NullPointerExecption " + e.getMessage());
             }
