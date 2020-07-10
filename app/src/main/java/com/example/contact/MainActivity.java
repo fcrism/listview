@@ -7,6 +7,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.contact.Utils.UniversalImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: started");
-
+        initImageLoader();
         init();
     }
     private void init(){
@@ -28,5 +31,11 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.fragment_container, fragment);
         transaction.addToBackStack(null); //retorna para o stack quando utiliza voltar
         transaction.commit();
+    }
+    // Inicializa o imageloader para não dar crash no onCreate do ViewContactFragment
+
+    private void initImageLoader(){
+        UniversalImageLoader universalImageLoader = new UniversalImageLoader(MainActivity.this);
+        ImageLoader.getInstance().init(universalImageLoader.getConfig());
     }
 }

@@ -9,22 +9,31 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethod;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.contact.Utils.CustomListAdapter;
+import com.example.contact.models.Contact;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 public class ViewContactFragment extends Fragment {
     private static final String TAG = "ViewContactsFragments";
+
+    private String testImageURL = "www.extremetech.com/wp-content/uploads/2017/04/business-android.jpg";
 
     private static final int STANDARD_APPBAR = 0;
     private static final int SEARCH_APPBAR = 1;
     private int mAppBarState;
 
     private AppBarLayout viewContactsBar, searchBar;
+    private CustomListAdapter adapter;
+    private ListView contactsList;
 
     @Nullable
     @Override
@@ -35,7 +44,11 @@ public class ViewContactFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_viewcontacts, container,false);
         viewContactsBar = (AppBarLayout) view.findViewById(R.id.viewContactsToolbar);
         searchBar = (AppBarLayout) view.findViewById(R.id.searchToolbar);
+        contactsList = (ListView) view.findViewById(R.id.contactsList);
+
         setAPPBarState(STANDARD_APPBAR);
+        setupContactsList();
+
 
         // Navegar ate add contacts
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.btn_add);
@@ -66,6 +79,26 @@ public class ViewContactFragment extends Fragment {
         return view;
 
     }
+
+    private void setupContactsList(){
+        final ArrayList<Contact> contacts = new ArrayList<>();
+        contacts.add(new Contact("Cristiano Moreira", "(19)991842310","Cris",testImageURL));
+        contacts.add(new Contact("Cristiano Moreira", "(19)991842310","Cris",testImageURL));
+        contacts.add(new Contact("Cristiano Moreira", "(19)991842310","Cris",testImageURL));
+        contacts.add(new Contact("Cristiano Moreira", "(19)991842310","Cris",testImageURL));
+        contacts.add(new Contact("Cristiano Moreira", "(19)991842310","Cris",testImageURL));
+        contacts.add(new Contact("Cristiano Moreira", "(19)991842310","Cris",testImageURL));
+        contacts.add(new Contact("Cristiano Moreira", "(19)991842310","Cris",testImageURL));
+        contacts.add(new Contact("Cristiano Moreira", "(19)991842310","Cris",testImageURL));
+        contacts.add(new Contact("Cristiano Moreira", "(19)991842310","Cris",testImageURL));
+        contacts.add(new Contact("Cristiano Moreira", "(19)991842310","Cris",testImageURL));
+        contacts.add(new Contact("Cristiano Moreira", "(19)991842310","Cris",testImageURL));
+        contacts.add(new Contact("Cristiano Moreira", "(19)991842310","Cris",testImageURL));
+
+        adapter = new CustomListAdapter(getActivity(), R.layout.layout_contactlistitem, contacts, "https://");
+        contactsList.setAdapter(adapter);
+    }
+
     // alterna estados da barra search
     private void toggleToolBarState() {
         Log.d(TAG, "toggleToolBarState: toggling appbar state");
