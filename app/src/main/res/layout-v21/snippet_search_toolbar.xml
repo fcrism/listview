@@ -32,7 +32,7 @@
                     android:layout_toRightOf="@id/ivBackArrow"
                     android:background="@null"
                     android:hint="Find a contact"
-                    android:text="@string/findContact"
+
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     />

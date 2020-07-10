@@ -1,10 +1,13 @@
 package com.example.contact;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +35,7 @@ public class ViewContactFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_viewcontacts, container,false);
         viewContactsBar = (AppBarLayout) view.findViewById(R.id.viewContactsToolbar);
         searchBar = (AppBarLayout) view.findViewById(R.id.searchToolbar);
+        setAPPBarState(STANDARD_APPBAR);
 
         // Navegar ate add contacts
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.btn_add);
@@ -65,7 +69,7 @@ public class ViewContactFragment extends Fragment {
     // alterna estados da barra search
     private void toggleToolBarState() {
         Log.d(TAG, "toggleToolBarState: toggling appbar state");
-        if(mAppBarState) == STANDARD_APPBAR){
+        if(mAppBarState == STANDARD_APPBAR){
             setAPPBarState(SEARCH_APPBAR);
         } else {
             setAPPBarState(STANDARD_APPBAR);
@@ -81,10 +85,31 @@ public class ViewContactFragment extends Fragment {
         if(mAppBarState == STANDARD_APPBAR){
             searchBar.setVisibility(View.GONE);
             viewContactsBar.setVisibility(View.VISIBLE);
+
+            // metodo para esconder o teclado
+            View view = getView();
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            // exceção caso o teclado já esteja aberto
+            try {
+                imm.hideSoftInputFromInputMethod(view.getWindowToken(), 0);
+            } catch (NullPointerException e){
+                Log.d(TAG, "setAPPBarState:  NullPointerExecption " + e.getMessage());
+            }
         }
         else if(mAppBarState == SEARCH_APPBAR){
             viewContactsBar.setVisibility(View.GONE);
             searchBar.setVisibility(View.VISIBLE);
+
+            // metodo para abrir o teclado
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
         }
+    }
+
+    // Ao sair e voltar do app a barra de busca volta para o estado inicial
+    @Override
+    public void onResume() {
+        super.onResume();
+        setAPPBarState(STANDARD_APPBAR);
     }
 }
