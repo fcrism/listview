@@ -2,7 +2,8 @@
     >
     <com.google.android.material.appbar.AppBarLayout
         android:layout_height="50dp"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:id="@+id/searchToolbar">
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
